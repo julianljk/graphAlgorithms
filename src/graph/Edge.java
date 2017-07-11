@@ -1,5 +1,7 @@
 package graph;
 
+import java.util.Objects;
+
 public class Edge <T> implements Comparable <Edge <T>>{
 	private Vertex <T> first, second;
 	private int weight;
@@ -40,4 +42,15 @@ public class Edge <T> implements Comparable <Edge <T>>{
 	public int compareTo(Edge <T> e) {
 		return weight - e.getWeight();
 	}
+	@Override
+	public int hashCode(){
+		return Objects.hash(weight, first.getValue(), second.getValue());
+	}
+	public boolean equals(Edge <T> e) {
+		if(e.weight == weight && e.getFirst().getValue() == first.getValue() && e.getSecond().getValue() == second.getValue()) {
+			return true;
+		}
+		return false;
+	}
 }
+
