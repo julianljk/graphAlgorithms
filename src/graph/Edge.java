@@ -1,6 +1,6 @@
 package graph;
 
-public class Edge <T> implements Comparable <Edge>{
+public class Edge <T> implements Comparable <Edge <T>>{
 	private Vertex <T> first, second;
 	private int weight;
 	public Edge(Vertex <T> a, Vertex <T> b) {
@@ -37,7 +37,7 @@ public class Edge <T> implements Comparable <Edge>{
 		System.out.println("Cannot set second vertex to equal first");
 	}
 	@Override
-	public int compareTo(Edge e) {
+	public int compareTo(Edge <T> e) {
 		return weight - e.getWeight();
 	}
 }

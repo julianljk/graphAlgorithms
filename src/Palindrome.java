@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.*;
 
 public class Palindrome {
@@ -11,7 +10,7 @@ public class Palindrome {
 		HashMap <Integer, HashSet<Integer>> map = new HashMap <Integer, HashSet<Integer>>();
 		for(int i = 0; i < input.length; i++){//jk lol this whole loop is failfish
 			HashSet <Integer> curr = new HashSet<Integer>();
-			for(HashSet currSet: map.values()){
+			for(HashSet <Integer> currSet: map.values()){
 				if(currSet.contains(input[i])){
 					curr = currSet;
 				}

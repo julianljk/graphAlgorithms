@@ -1,11 +1,9 @@
-import java.util.Arrays;
-
 public class minJump {
 	public static void main (String [] args) {
 		int [] arr = {1,3,5,8,9,2,6,7,6,8,9};
-		System.out.println(minJump(arr, arr.length));
+		System.out.println(getMinJump(arr, arr.length));
 	}
-	private static int minJump(int [] arr, int length) {
+	private static int getMinJump(int [] arr, int length) {
 		int [] cache = new int [length];
 		int min;
 		cache[length - 1] = 0;

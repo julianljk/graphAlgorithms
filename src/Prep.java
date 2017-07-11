@@ -25,6 +25,7 @@ public class Prep {
 			}
 		}
 		catch (Exception e){
+			sc.close();
 			throw new Exception("exception");
 		}
 		while(sc.hasNextLine()){
@@ -48,5 +49,6 @@ public class Prep {
 		}
 		
 		System.out.println("hello there, the angel of my nightmare");
+		sc.close();
 	}
 }

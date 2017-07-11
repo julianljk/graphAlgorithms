@@ -1,8 +1,4 @@
-import java.util.HashMap;
-import java.util.HashSet;
-
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-
+import java.util.*;
 import graph.*;
 
 public class DijkstraSP {
