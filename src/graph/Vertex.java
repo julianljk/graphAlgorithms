@@ -25,10 +25,16 @@ public class Vertex <T> {
 		}
 		return null;
 	}
+	public ArrayList <Vertex <T>> getNeighbors() {
+		return neighbors;
+	}
 	public boolean equals(Vertex<T> v) {
 		return value == v.getValue();
 	}
 	public int hashCode() {
 		return Objects.hash(value);
+	}
+	public String toString(){
+		return value.toString();
 	}
 }

@@ -23,6 +23,8 @@ public class Graph <T> {
 			System.out.println("graph already contains this edge");
 		}
 		else {
+			e.getFirst().addNeighbor(e.getSecond());
+			e.getSecond().addNeighbor(e.getFirst());
 			edges.put(e.hashCode(), e);
 			E++;
 		}
