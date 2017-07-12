@@ -59,7 +59,7 @@ public class GraphTraversal {
 		
 		Vertex <Integer> curr = null; 
 		ArrayList<Vertex<Integer>> currNeighbors;
-		while(queue.size() != 0) {
+		while(visited.size() < graph.getVerticeCount() && parents.get(to) == null) {
 			curr = queue.poll(); 
 			currNeighbors = curr.getNeighbors();
 			//look for all other neighbours of that node
