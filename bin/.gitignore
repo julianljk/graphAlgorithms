@@ -1,9 +1,2 @@
-/DijkstraSP.class
-/KruskalMST.class
-/MaximumLengthChainPairs.class
-/Palindrome.class
-/Prep.class
-/UnionFind.class
+/TopologicalSorting.class
 /graph/
-/minJump.class
-/GraphTraversal.class

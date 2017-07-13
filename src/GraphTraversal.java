@@ -42,15 +42,16 @@ public class GraphTraversal {
 		
 		
 		BFS(graph, 0, 8);
+		DFS(graph, 8, 0);
 	}
-	public static void BFS(Graph <Integer> graph, int from, int to) {
+	public static void BFS(Graph <Integer> graph, int from, int to) { //O(V + E) as well, same reasoning as DFS
 		//BFS is a queue
 		//DFS is a stack
 		LinkedList <Vertex <Integer>> queue = new LinkedList <Vertex <Integer>>();
 		HashMap <Integer, Integer> parents = new HashMap <Integer, Integer>(); 
 		HashSet <Vertex <Integer>> visited = new HashSet <Vertex <Integer>>();
 		Iterator <Integer> itr = graph.getVertices().keySet().iterator();
-		while(itr.hasNext()) {
+		while(itr.hasNext()) { //O(V)
 			parents.put(itr.next(), null);
 		}
 		Vertex <Integer> initialNode = graph.getVertice(from);
@@ -77,5 +78,32 @@ public class GraphTraversal {
 			System.out.print(graph.getVertice(vIndex).getValue() + " -> ");
 			vIndex = parents.get(vIndex);
 		}
+		System.out.println();
+	}
+	public static void DFS(Graph <Integer> graph, int to, int from) { // O(V + E), V to mark all as null, E because it looks through (at worse) each edge essentially
+		HashMap <Integer, Integer> parents = new HashMap <Integer, Integer>(); 
+		for(Integer i: graph.getVertices().keySet()){ //O(V)
+			parents.put(i, null);
+		}
+		parents.put(from, from);
+		DFSHelper(parents, to, from, graph.getVertice(from));
+		Integer curr = to;
+		while (curr != parents.get(curr)) {
+			System.out.print(curr + " -> ");
+			curr = parents.get(curr);
+		}
+		System.out.println(curr);
+	}
+	public static void DFSHelper(HashMap <Integer, Integer> parents, int to, int from, Vertex <Integer> curr) {
+		if(parents.get(to) != null) {
+			return;
+		}
+		for(Vertex <Integer> v: curr.getNeighbors()) { //O(E)
+			if(parents.get(v.getValue()) == null) {
+				parents.put(v.getValue(), curr.getValue());
+				DFSHelper(parents, to, from, v);
+			}
+		}
+		
 	}
 }
