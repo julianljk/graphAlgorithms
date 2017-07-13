@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Vertex <T> {
 	private T value;
-	ArrayList <Vertex <T>> neighbors;
+	private ArrayList <Vertex <T>> neighbors;
 	public Vertex(T value, ArrayList<Vertex <T>> neighbors) {
 		this.value = value; 
 		this.neighbors = neighbors;
@@ -37,4 +37,5 @@ public class Vertex <T> {
 	public String toString(){
 		return value.toString();
 	}
+	//need to get
 }

@@ -12,6 +12,12 @@ public class Graph <T> {
 		V = 0;
 		E = 0; 
 	}
+	protected Graph(HashMap <T, Vertex<T>> v, HashMap <Integer, Edge <T> > e) {
+		vertices = v;
+		edges = e; 
+		V = 0; 
+		E = 0;
+	}
 	public void addEdge(Edge <T> e) { 
 		if(!vertices.containsKey(e.getFirst().getValue())){
 			System.out.println("graph does not contain vertex " + e.getFirst().getValue());
