@@ -22,17 +22,51 @@ public class DijkstraSP {
 		graph.addEdge(new MinimalEdge(6, 7, 1));
 		graph.addEdge(new MinimalEdge(7, 8, 7));
 		
-		
+		HashMap <Integer, Integer> spt = findShortestPath(graph, 0);
+		for(Map.Entry <Integer, Integer> e: spt.entrySet()) {
+			System.out.println(e.getKey() + " -> " + e.getValue());
+		}
 	}
-	public static int findShortestPath(MinimalGraph graph, int from, int to) {
+	public static HashMap <Integer, Integer> findShortestPath(MinimalGraph graph, int from) {
 		HashSet <Integer> SPT = new HashSet <Integer>(); 
 		HashMap <Integer, Integer> distances = new HashMap <Integer, Integer>();
 		graph.getVertices().forEach( v -> distances.put(v, Integer.MAX_VALUE));
 		distances.put(0, 0);
+		int curr; 
+		ArrayList<MinimalEdge> neighbors; 
 		while(SPT.size() < graph.getVerticeCount()) {
-			
+			curr = getMinVertex(SPT, distances);
+			SPT.add(curr);
+			neighbors = getNeighbors(graph, curr); 
+			int other; 
+			for(MinimalEdge e: neighbors) {
+				other = e.getFrom() == curr ? e.getTo() : e.getFrom(); 
+				if(distances.get(other) > distances.get(curr) + e.getWeight()){
+					distances.put(other, distances.get(curr) + e.getWeight());
+				}
+			}
 		}
 		
-		return 1;
+		return distances;
+	}
+	private static int getMinVertex(HashSet <Integer> spt, HashMap <Integer,Integer> distances) {
+		int max = Integer.MAX_VALUE;
+		int node = -1;
+		for (Map.Entry<Integer, Integer> e: distances.entrySet()) {
+			if (e.getValue() < max && !spt.contains(e.getKey())) {
+				max = e.getValue();
+				node = e.getKey();
+			}
+		}
+		return node;
+	}
+	private static ArrayList <MinimalEdge> getNeighbors(MinimalGraph graph, int v) {
+		ArrayList <MinimalEdge> list = new ArrayList <MinimalEdge>();
+		for(MinimalEdge e: graph.getEdges().values()) {
+			if(e.getFrom() == v || e.getTo() == v) {
+				list.add(e);
+			}
+		}
+		return list; 
 	}
 }
