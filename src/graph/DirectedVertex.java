@@ -25,13 +25,13 @@ public class DirectedVertex <T> extends Vertex <T> {
 	}
 
 	public void addNeighbor(DirectedVertex <T> v, int direction) {
+		super.addNeighbor(v);
 		if(direction == 1) {
 			outgoing.add(v);
 		}
 		else {
 			incoming.add(v);
 		}
-		this.addNeighbor(v);
 	}
 	public void addNeighbor(DirectedVertex <T> d) {
 		 throw new UnsupportedOperationException();
