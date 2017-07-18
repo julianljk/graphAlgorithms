@@ -17,7 +17,7 @@ public class IsGraphStronglyConnected {
         
         System.out.println(isSC(graph));
     }
-    public static boolean isSC(DirectedGraph <Integer> graph) {
+    public static boolean isSC(DirectedGraph <Integer> graph) { //O(V + E) = 2 DFS O(V + E) searches + 2 O(V) loops over visited array
        
         boolean [] visited = new boolean [graph.getVerticeCount()]; 
         Arrays.fill(visited, false);
