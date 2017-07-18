@@ -33,6 +33,23 @@ public class DirectedVertex <T> extends Vertex <T> {
 			incoming.add(v);
 		}
 	}
+	public boolean removeNeighbor(DirectedVertex <T> v, int direction) {
+		super.removeNeighbor(v);
+		if(direction == 1) {
+			if(outgoing.contains(v)) {
+				outgoing.remove(v); 
+				return true; 
+			}
+			System.out.println("No such element");
+		}
+		else if (direction == 0){  
+			if(incoming.contains(v)) {
+				incoming.remove(v);	
+				return true;
+			}
+		}
+		return false;
+	}
 	public void addNeighbor(DirectedVertex <T> d) {
 		 throw new UnsupportedOperationException();
 	}

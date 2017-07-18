@@ -25,6 +25,13 @@ public class Vertex <T> {
 		}
 		return null;
 	}
+	public boolean removeNeighbor(Vertex <T> v) {
+		if(neighbors.contains(v)) {
+			neighbors.remove(v);
+			return true;
+		}
+		return false;
+	}
 	public ArrayList <Vertex <T>> getNeighbors() {
 		return neighbors;
 	}

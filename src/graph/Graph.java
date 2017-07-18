@@ -38,8 +38,10 @@ public class Graph <T> {
 	public Edge <T> removeEdge(T to, T from, int weight) {
 		return edges.remove(this.getEdgeWhere(to, from, weight).hashCode());
 	}
-	public Edge <T> removeEdge(MinimalEdge e) {
-		return edges.remove(e.hashCode());
+	public void removeEdge(Edge <T> e) {
+		edges.remove(e.hashCode());
+		e.getFirst().removeNeighbor(e.getSecond());
+		e.getSecond().removeNeighbor(e.getFirst());
 	}
 	public int getEdgeCount() {
 		return E; 

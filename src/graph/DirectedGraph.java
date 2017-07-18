@@ -27,4 +27,11 @@ public class DirectedGraph<T> extends Graph <T>{
 			V++;
 		}
 	}
+	public void removeEdge(Edge <T> e) {
+		super.removeEdge(e);
+		DirectedVertex <T> curr = (DirectedVertex <T>) e.getFirst();
+		curr.removeNeighbor((DirectedVertex <T>) e.getSecond(), 1);
+		curr = (DirectedVertex <T>) e.getSecond();
+		curr.removeNeighbor((DirectedVertex <T>) e.getFirst(), 0);
+	}
 }
