@@ -2,11 +2,10 @@ import java.util.Arrays;
 
 public class Sort {
     public static void main (String [] args) {
-//        int [] arr = new int [200]; 
-//        for(int i = 0; i < arr.length; i++) {
-//            arr[i] = (int) (Math.random() * 100);     
-//        }
-    	int [] arr = {170, 45, 75, 90, 802, 24, 2, 66};
+        int [] arr = new int [200]; 
+        for(int i = 0; i < arr.length; i++) {
+            arr[i] = (int) (Math.random() * 100);     
+        }
         printArray(arr);
         radixSort(arr);
         printArray(arr);
