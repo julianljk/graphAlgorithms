@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 public class twichLearnsProgramming {
     public static void main (String [] args) {
@@ -20,7 +22,19 @@ public class twichLearnsProgramming {
             System.out.println();
         }
         //END GET BUCKETS
-        System.out.println(isSubstr("sprmn", "superman"));
+        //System.out.println(isSubstr("sprmn", "superman"));
+
+
+        //print pairs
+
+        int [] A = {-1, -2, 4, -6, 5, 7};
+        int [] B = {6, 3, 4, 0};
+        System.out.println("printing pairs");
+        printPairs2(A, B, 8);
+        System.out.println("chunk palindrome");
+        System.out.println(chunkPalindrome("geeksforgeeks"));
+        String str = "geeks";
+        System.out.print("minimum rotation for " + str + " is : " + minimumRotations(str) );
 
     }
     public static int longestSequence(int [] arr) {
@@ -83,4 +97,91 @@ public class twichLearnsProgramming {
         }
         return false;
     }
+    public static void printPairs(int [] a, int [] b, int x) {
+        if(a.length == 0 || b.length == 0) {
+            return;
+        }
+        HashMap <Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(Integer i: a) {
+            //store all values into map
+            map.put(i, i);
+        }
+        for(Integer j: b) {
+            if(map.get(x - j) != null) {
+                System.out.println(j + ", " + map.get(x - j));
+            }
+        }
+    }
+    public static int chunkPalindrome(String str) {
+        if (str.length() == 0) {
+            return -1;
+        }
+        else if (str.length() == 1) {
+            return 1;
+        }
+        return chunkPalindrome(0, str.length() - 1, str, "","", 0);
+    }
+    public static int chunkPalindrome(int left, int right, String str, String leftBuffer, String rightBuffer, int count) {
+        if(left == right) {
+            return count + 1;
+        }
+        else if (left + 1 == right) {
+            return count + (leftBuffer + str.charAt(left) == str.charAt(right) + rightBuffer ? 2 : 1);
+        }
+        else {
+            leftBuffer = leftBuffer + str.charAt(left);
+            rightBuffer = str.charAt(right) + rightBuffer;
+            if(leftBuffer.equals(rightBuffer)) {
+                count+= 2;
+                leftBuffer = "";
+                rightBuffer = "";
+            }
+            return chunkPalindrome(left + 1, right - 1, str, leftBuffer, rightBuffer, count);
+        }
+    }
+    public static int minimumRotations(String str) {
+        String temp = str + str;
+        int count = 1;
+        for(int i = 1; i < str.length(); i++) {
+            if(temp.substring(i, str.length() + i).equals(str)) {
+                return count;
+            }
+            count++;
+        }
+        return str.length();
+    }
+    public static void printPairs2(int [] a, int [] b, int x) {
+        Arrays.sort(a);
+        Arrays.sort(b);
+
+        int i = 0;
+        int j = b.length - 1;
+
+        while ( i < a.length - 1) {
+            while(j >= 0) {
+                if(a[i] + b[j] == x) {
+                    System.out.println(a[i] + ", " + b[j]);
+                    i++;
+                    j--;
+                }
+                else if(i == a.length - 1) {
+                    j--;
+                }
+                else if(j == 0) {
+                    i++;
+                }
+                else {
+                    if(Math.abs(x - (a[i] + b[j - 1])) <=
+                            Math.abs(x - (b[j] + a[i + 1]))) {
+                        j--;
+                    }
+                    else {
+                        i++;
+                    }
+                }
+            }
+        }
+    }
+
+
 }
